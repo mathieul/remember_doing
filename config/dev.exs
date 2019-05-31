@@ -26,7 +26,7 @@ config :remember_doing, RememberDoingWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
+      "--colors"
     ]
   ]
 
