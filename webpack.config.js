@@ -10,7 +10,7 @@ module.exports = (env, options) => ({
     minimizer: [new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }), new OptimizeCSSAssetsPlugin({})],
   },
   entry: {
-    app: "./assets/js/app.tsx",
+    app: "./assets/js/app.ts",
   },
   output: {
     filename: "app.js",
