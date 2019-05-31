@@ -6,14 +6,6 @@ import "phoenix_html"
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-class Root extends React.Component {
-  public render(): JSX.Element {
-    return (
-      <div>
-        <h2>Testing stuff...</h2>
-      </div>
-    )
-  }
-}
+import Root from "./Root"
 
 ReactDOM.render(<Root />, document.getElementById("react-app"))
