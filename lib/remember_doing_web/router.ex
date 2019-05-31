@@ -19,7 +19,16 @@ defmodule RememberDoingWeb.Router do
     get "/", HomeController, :index
   end
 
-  scope "/api", RememberDoingWeb do
+  scope "/" do
     pipe_through :api
+
+    forward("/api", Absinthe.Plug, schema: RememberDoingWeb.GraphQL.Schema)
+
+    forward(
+      "/graphiql",
+      Absinthe.Plug.GraphiQL,
+      schema: RememberDoingWeb.GraphQL.Schema,
+      interface: :playground
+    )
   end
 end
