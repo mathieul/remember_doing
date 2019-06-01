@@ -1,20 +1,19 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import * as ReactDOM from "react-dom"
-import { Layout } from "antd"
+import { Container, Navbar, Row, Col } from "react-bootstrap"
 import HelloWorld from "./HelloWorld"
 
 export default class extends Component {
   public render(): JSX.Element {
     return (
-      <Layout>
-        <Layout.Header>Header</Layout.Header>
-        <Layout>
-          <Layout.Sider theme="light">Sider</Layout.Sider>
-          <Layout.Content>
-            <HelloWorld />
-          </Layout.Content>
-        </Layout>
-      </Layout>
+      <Fragment>
+        <Navbar bg="light">
+          <Navbar.Brand href="/">Remember Doing</Navbar.Brand>
+        </Navbar>
+        <Container>
+          <HelloWorld />
+        </Container>
+      </Fragment>
     )
   }
 }

@@ -7,6 +7,8 @@ import { HttpLink } from "apollo-link-http"
 
 import Root from "./Root"
 
+import "bootstrap/dist/css/bootstrap.min.css"
+
 const cache = new InMemoryCache()
 const link = new HttpLink({ uri: "http://localhost:4000/api" })
 const client = new ApolloClient({ cache, link })
