@@ -16,7 +16,7 @@ defmodule RememberDoingWeb.Router do
   scope "/", RememberDoingWeb do
     pipe_through :browser
 
-    get "/", HomeController, :index
+    get "/*path", HomeController, :index
   end
 
   scope "/" do

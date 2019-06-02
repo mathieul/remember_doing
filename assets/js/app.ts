@@ -3,4 +3,4 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
-import "./components/App"
+import "./features/App"
