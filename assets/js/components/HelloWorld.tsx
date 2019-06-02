@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from "react"
+import React, { Component } from "react"
 import * as ReactDOM from "react-dom"
 import { Query, Mutation } from "react-apollo"
 import gql from "graphql-tag"

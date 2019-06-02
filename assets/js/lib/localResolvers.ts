@@ -1,8 +1,15 @@
 import gql from "graphql-tag"
 
 export const typeDefs = gql`
+  type Task {
+    id: ID!
+    label: String!
+    done: Boolean!
+  }
+
   extend type Query {
     counter: Number!
+    tasks: [Task]!
   }
 
   extend type Mutation {
