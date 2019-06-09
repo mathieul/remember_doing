@@ -4,6 +4,7 @@ import { Container, Navbar, Nav } from "react-bootstrap"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import { LinkContainer } from "react-router-bootstrap"
 
+import TaskDashboard from "./TaskDashboard"
 import Demo from "./Demo"
 import Static from "./Static"
 
@@ -17,7 +18,12 @@ export default class extends Component {
           </Navbar.Brand>
           <Nav variant="pills">
             <Nav.Item>
-              <LinkContainer to="/">
+              <LinkContainer to="/" exact>
+                <Nav.Link>TaskDashboard</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="/demo">
                 <Nav.Link>Demo</Nav.Link>
               </LinkContainer>
             </Nav.Item>
@@ -29,7 +35,8 @@ export default class extends Component {
           </Nav>
         </Navbar>
         <Container fluid>
-          <Route exact path="/" component={Demo} />
+          <Route exact path="/" component={TaskDashboard} />
+          <Route exact path="/demo" component={Demo} />
           <Route path="/static" component={Static} />
         </Container>
       </Router>
