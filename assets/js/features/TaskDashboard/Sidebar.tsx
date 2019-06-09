@@ -1,17 +1,16 @@
-import React, { Component, Fragment } from "react"
+import React, { FunctionComponent, Fragment } from "react"
 import * as ReactDOM from "react-dom"
 
 type Props = {
   tasks: object[]
 }
 
-export default class extends Component<Props, {}> {
-  public render(): JSX.Element {
-    return (
-      <Fragment>
-        <h2>Tasks</h2>
-        {JSON.stringify(this.props.tasks, null, 2)}
-      </Fragment>
-    )
-  }
+const Sidebar: FunctionComponent<Props> = ({ tasks }) => {
+  return (
+    <Fragment>
+      <h2>Tasks</h2>
+      {JSON.stringify(tasks, null, 2)}
+    </Fragment>
+  )
 }
+export default Sidebar
