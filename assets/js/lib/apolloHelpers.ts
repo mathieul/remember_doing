@@ -1,11 +1,27 @@
 import { ApolloClient } from "apollo-client"
 import { InMemoryCache } from "apollo-cache-inmemory"
-import { HttpLink } from "apollo-link-http"
+import { createHttpLink } from "apollo-link-http"
+import { split } from "apollo-link"
+import { hasSubscription } from "@jumpn/utils-graphql"
+import * as AbsintheSocket from "@absinthe/socket"
+import {createAbsintheSocketLink} from "@absinthe/socket-apollo-link"
+import {Socket as PhoenixSocket} from "phoenix"
+
 import { resolvers, typeDefs } from "./localResolvers"
 
+const absintheSocketLink = createAbsintheSocketLink(
+  AbsintheSocket.create(new PhoenixSocket("ws://localhost:4000/socket"))
+)
+
+const link = split(
+  operation => hasSubscription(operation.query),
+  absintheSocketLink,
+  createHttpLink({uri: "http://localhost:4000/api"})
+)
+
 const cache = new InMemoryCache()
-const link = new HttpLink({ uri: "http://localhost:4000/api" })
 const client = new ApolloClient({ cache, link, typeDefs, resolvers })
+
 cache.writeData({
   data: {
     counter: 0,

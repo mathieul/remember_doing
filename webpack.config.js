@@ -7,7 +7,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = (env, options) => ({
   optimization: {
-    minimizer: [new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new OptimizeCSSAssetsPlugin({})
+    ],
   },
   entry: {
     app: "./assets/js/app.ts",
@@ -17,13 +19,17 @@ module.exports = (env, options) => ({
     path: path.resolve(__dirname, "priv/static/js"),
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
       },
       {
         test: /\.css$/,
@@ -36,7 +42,6 @@ module.exports = (env, options) => ({
     new CopyWebpackPlugin([{ from: "assets/static/", to: "../" }]),
   ],
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    extensions: [".mjs", ".ts", ".tsx", ".js", ".jsx", ".json"],
   },
 })
