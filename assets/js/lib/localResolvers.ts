@@ -7,9 +7,15 @@ export const typeDefs = gql`
     done: Boolean!
   }
 
+  type TaskGroup {
+    id: ID!
+    label: String!
+    tasks: [Task]!
+  }
+
   extend type Query {
     counter: Number!
-    tasks: [Task]!
+    taskGroups: [TaskGroup]!
   }
 
   extend type Mutation {

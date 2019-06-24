@@ -9,10 +9,14 @@ import Details from "./Details"
 
 const QUERY = gql`
   query {
-    tasks @client {
+    taskGroups @client {
       id
       label
-      done
+      tasks {
+        id
+        label
+        done
+      }
     }
   }
 `
@@ -20,16 +24,16 @@ const QUERY = gql`
 const TaskDashboard: FunctionComponent<{}> = () => {
   return (
     <Query query={QUERY}>
-      {({ data: { tasks, loading, error } }) => {
+      {({ data: { taskGroups, loading, error } }) => {
         if (loading) return "Loading..."
         if (error) return <Alert variant="danger">An error occurred ({error})</Alert>
         return (
           <Row noGutters style={{ height: "92vh" }}>
             <Col xs={2} className="px-2 py-3">
-              <Sidebar tasks={tasks} />
+              <Sidebar tasks={taskGroups[0].tasks} />
             </Col>
             <Col xs={10} className="bg-light px-2 py-3">
-              <Details task={tasks[0]} />
+              <Details task={taskGroups[0].tasks[0]} />
             </Col>
           </Row>
         )
