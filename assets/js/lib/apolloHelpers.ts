@@ -39,6 +39,9 @@ cache.writeData({
         __typename: "TaskGroup",
       },
     ],
+    tasks: [
+      { id: 42, label: "Uniiiiiik", done: false, __typename: "Task" },
+    ]
   },
 })
 
